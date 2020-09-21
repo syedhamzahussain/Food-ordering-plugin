@@ -2,7 +2,6 @@
 /**
  *
  * Main Plugin files loader.
- *
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -32,14 +31,13 @@ if ( ! class_exists( 'WFOP_LOADER' ) ) {
 		 * Includes function.
 		 */
 		public function includes() {
-			
+
 			if ( wp_doing_ajax() ) {
 				// inluding all files those will only use in ajax request.
 				require_once WFOP_PLUGIN_DIR . '/includes/classes/ajax/class-wfop-all-ajax-calls.php';
 			}
-			
-			require_once WFOP_PLUGIN_DIR . '/includes/classes/admin/class-wfop-register-woo-tab.php';
 
+			require_once WFOP_PLUGIN_DIR . '/includes/classes/admin/class-wfop-register-woo-tab.php';
 
 		}
 
@@ -58,12 +56,11 @@ if ( ! class_exists( 'WFOP_LOADER' ) ) {
 					'wfop-script',
 					'wfop_ajax',
 					array(
-						'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+						'ajaxurl'   => admin_url( 'admin-ajax.php' ),
 						'wfopnonce' => wp_create_nonce( 'wfop-nonce' ),
 					)
 				);
 
-	
 		}
 
 		/**
@@ -77,7 +74,7 @@ if ( ! class_exists( 'WFOP_LOADER' ) ) {
 				'wfop-admin-script',
 				'wfop_ajax',
 				array(
-					'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+					'ajaxurl'   => admin_url( 'admin-ajax.php' ),
 					'wfopnonce' => wp_create_nonce( 'wfop-nonce' ),
 				)
 			);

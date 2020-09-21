@@ -2,7 +2,6 @@
 /**
  *
  * Ajax Function File.
- *
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,10 +22,9 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 		 */
 		public function __construct() {
 
-
 		}
 
-		
+
 
 	}
 
