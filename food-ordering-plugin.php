@@ -32,4 +32,6 @@ if ( ! defined( 'WFOP_ASSETS_DIR_URL' ) ) {
 	define( 'WFOP_ASSETS_DIR_URL', WFOP_PLUGIN_DIR_URL . 'assets' );
 }
 
+require_once WFOP_PLUGIN_DIR . '/includes/helper.php';
 require_once WFOP_PLUGIN_DIR . '/includes/classes/class-wfop-loader.php';
+

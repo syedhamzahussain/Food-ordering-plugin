@@ -68,6 +68,10 @@ if ( ! class_exists( 'WFOP_LOADER' ) ) {
 		 * Register backend scripts function.
 		 */
 		public function register_backend_scripts() {
+
+			wp_enqueue_style( 'select2-styling', WFOP_ASSETS_DIR_URL . '/css/select2.min.css', null, 1 );
+			wp_enqueue_script( 'select2-script', WFOP_ASSETS_DIR_URL . '/js/select2.min.js', array( 'jquery' ), true );
+
 			wp_enqueue_style( 'wfop-style', WFOP_ASSETS_DIR_URL . '/css/style.css', '', wp_rand() );
 			wp_enqueue_script( 'wfop-admin-script', WFOP_ASSETS_DIR_URL . '/js/admin.js', array( 'jquery' ), wp_rand(), true );
 			wp_localize_script(
