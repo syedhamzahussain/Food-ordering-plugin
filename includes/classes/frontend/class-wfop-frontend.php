@@ -27,9 +27,17 @@ if ( ! class_exists( 'WFOP_FRONTEND' ) ) {
 
 		public function init() {
 
+			add_shortcode( 'wfop_shop', array( $this, 'wfop_shop_shortcode' ) );
+
 		}
 
-		
+		public function wfop_shop_shortcode() {
+
+			include WFOP_TEMP_DIR . '/frontend/template-wfop_shortcode.php';
+
+		}
+
+
 
 	}
 	new WFOP_FRONTEND();
