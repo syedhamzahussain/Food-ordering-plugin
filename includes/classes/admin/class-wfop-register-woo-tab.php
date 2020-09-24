@@ -22,6 +22,15 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 
 			$this->id = 'wc_food_ordering_plugin';
 
+			$this->all_intervals = array(
+				'15' => '15min',
+				'30' => '30min',
+				'45' => '45min',
+				'60' => '1hr',
+				'120' => '2hrs',
+				'180' => '3hrs',
+							);
+
 
 			add_action( 'woocommerce_admin_field_show_all_added_slots', array( $this, 'show_all_added_slots' ) );
 
@@ -93,15 +102,6 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 		 */
 		public function get_settings( $section = null ) {
 
-			$all_intervals = array(
-				'15' => '15min',
-				'30' => '30min',
-				'45' => '45min',
-				'60' => '1hr',
-				'120' => '2hrs',
-				'180' => '3hrs',
-							);
-
 			$orderby = 'name';
 			$order = 'asc';
 			$hide_empty = false ;
@@ -112,6 +112,8 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 			);
 			 
 			$product_cat = get_terms( 'product_cat', $cat_args );
+
+			$product_categories['all'] = 'All';
 
 			foreach ( $product_cat as $key => $value ) {
 				$product_categories[$value->term_id] = 'ID ' . $value->term_id . '-' . $value->name;
@@ -147,7 +149,7 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 				'time_interval'                => array(
 					'title' => __( 'Time Intervals', 'wc_food_ordering_plugin' ),
 					'type' => 'select',
-					'options' => $all_intervals,
+					'options' => $this->all_intervals,
 					'id'   => $this->id . '_time_interval',
 				),
 				'no_of_pieces'                => array(
@@ -209,6 +211,14 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 				$total_slots = total_slots($StartTime, $EndTime, $Duration);
 
 				update_option( 'wfop_total_slots', $total_slots, 0 );
+			}
+			
+			if( isset( $_POST['wc_food_ordering_plugin_add_slots_to_cat'] )  ){
+
+				if( in_array( 'all', $_POST['wc_food_ordering_plugin_add_slots_to_cat'] ) ){
+
+					$_POST['wc_food_ordering_plugin_add_slots_to_cat'] = array('all' => 'all');
+				}
 			}
 
 			woocommerce_update_options( self::get_settings() );
