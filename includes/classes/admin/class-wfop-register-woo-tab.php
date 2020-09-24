@@ -22,12 +22,54 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 
 			$this->id = 'wc_food_ordering_plugin';
 
+			$this->all_intervals = array(
+				'15'  => '15min',
+				'30'  => '30min',
+				'45'  => '45min',
+				'60'  => '1hr',
+				'120' => '2hrs',
+				'180' => '3hrs',
+			);
+
+			add_action( 'init', array( $this, 'init' ) );
+
 			add_action( 'woocommerce_admin_field_show_all_added_slots', array( $this, 'show_all_added_slots' ) );
 
 			add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_tab' ), 50 );
 			add_action( 'woocommerce_sections_' . $this->id, array( $this, 'output' ) );
 			add_action( 'woocommerce_settings_' . $this->id, array( $this, 'get_settings' ) );
 			add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'save' ) );
+
+			add_action( 'woocommerce_process_product_meta', array( $this, 'product_level_save_meta' ) );
+
+		}
+
+		public function init() {
+
+			add_action( 'woocommerce_product_options_inventory_product_data', array( $this, 'product_level_pieces' ) );
+		}
+
+		public function product_level_pieces() {
+			woocommerce_wp_text_input(
+				array(
+					'id'                => 'wfop_ind_piece',
+					'label'             => __( 'No of Pieces per Slot', 'codup_wc_product_page_enhancement' ),
+					'custom_attributes' => array(
+						'step' => 'any',
+						'min'  => '0',
+					),
+				)
+			);
+
+		}
+
+		public function product_level_save_meta( $post_id ) {
+
+			if ( isset( $_POST['wfop_ind_piece'] ) ) {
+				$indi_piece = sanitize_text_field( wp_unslash( $_POST['wfop_ind_piece'] ) );
+
+				update_post_meta( $post_id, 'wfop_ind_piece', $indi_piece );
+			}
 
 		}
 
@@ -92,15 +134,6 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 		 */
 		public function get_settings( $section = null ) {
 
-			$all_intervals = array(
-				'15'  => '15min',
-				'30'  => '30min',
-				'45'  => '45min',
-				'60'  => '1hr',
-				'120' => '2hrs',
-				'180' => '3hrs',
-			);
-
 			$orderby    = 'name';
 			$order      = 'asc';
 			$hide_empty = false;
@@ -111,6 +144,8 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 			);
 
 			$product_cat = get_terms( 'product_cat', $cat_args );
+
+			$product_categories['all'] = 'All';
 
 			foreach ( $product_cat as $key => $value ) {
 				$product_categories[ $value->term_id ] = 'ID ' . $value->term_id . '-' . $value->name;
@@ -146,7 +181,7 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 				'time_interval'    => array(
 					'title'   => __( 'Time Intervals', 'wc_food_ordering_plugin' ),
 					'type'    => 'select',
-					'options' => $all_intervals,
+					'options' => $this->all_intervals,
 					'id'      => $this->id . '_time_interval',
 				),
 				'no_of_pieces'     => array(
@@ -208,6 +243,14 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 				$total_slots = total_slots( $StartTime, $EndTime, $Duration );
 
 				update_option( 'wfop_total_slots', $total_slots, 0 );
+			}
+
+			if ( isset( $_POST['wc_food_ordering_plugin_add_slots_to_cat'] ) ) {
+
+				if ( in_array( 'all', $_POST['wc_food_ordering_plugin_add_slots_to_cat'] ) ) {
+
+					$_POST['wc_food_ordering_plugin_add_slots_to_cat'] = array( 'all' => 'all' );
+				}
 			}
 
 			woocommerce_update_options( self::get_settings() );

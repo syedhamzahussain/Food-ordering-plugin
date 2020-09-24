@@ -3,14 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-$all_intervals = array(
-	'15'  => '15min',
-	'30'  => '30min',
-	'45'  => '45min',
-	'60'  => '1hr',
-	'120' => '2hrs',
-	'180' => '3hrs',
-);
+
 
 $intervals    = get_option( 'wc_food_ordering_plugin_time_interval', true );
 $total_slots  = get_option( 'wfop_total_slots', true );
@@ -28,17 +21,28 @@ $affected_cat = get_option( 'wc_food_ordering_plugin_add_slots_to_cat', null );
 				</tr>
 			</thead>
 			<tbody>
+				<?php
+				if ( ! empty( $intervals ) && ! empty( $total_slots ) && ! empty( $pieces ) && ! empty( $affected_cat ) ) {
+					?>
 					<tr>
-						<td><?php echo $all_intervals[ $intervals ]; ?></td>
+						<td><?php echo $this->all_intervals[ $intervals ]; ?></td>
 						<td><?php echo count( $total_slots ); ?></td>
 						<td><?php echo $pieces; ?></td>
 						<td>
 						<?php
+
 						foreach ( $affected_cat as $key => $value ) {
-							echo get_term_by( 'id', $value, 'product_cat' )->name . ' -';
+
+							if ( 'all' == $value ) {
+								echo __( 'All' );
+							} else {
+								echo get_term_by( 'id', $value, 'product_cat' )->name . ' -';
+							}
 						}
+
 						?>
 						</td>
 					</tr>
+				<?php } ?>
 			</tbody>
 		</table>
