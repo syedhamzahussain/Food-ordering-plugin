@@ -23,14 +23,13 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 			$this->id = 'wc_food_ordering_plugin';
 
 			$this->all_intervals = array(
-				'15' => '15min',
-				'30' => '30min',
-				'45' => '45min',
-				'60' => '1hr',
+				'15'  => '15min',
+				'30'  => '30min',
+				'45'  => '45min',
+				'60'  => '1hr',
 				'120' => '2hrs',
 				'180' => '3hrs',
-							);
-
+			);
 
 			add_action( 'woocommerce_admin_field_show_all_added_slots', array( $this, 'show_all_added_slots' ) );
 
@@ -54,15 +53,15 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 		}
 
 		public function add_slots_to_cat() {
-			$orderby = 'name';
-			$order = 'asc';
-			$hide_empty = false ;
-			$cat_args = array(
-			    'orderby'    => $orderby,
-			    'order'      => $order,
-			    'hide_empty' => $hide_empty,
+			$orderby    = 'name';
+			$order      = 'asc';
+			$hide_empty = false;
+			$cat_args   = array(
+				'orderby'    => $orderby,
+				'order'      => $order,
+				'hide_empty' => $hide_empty,
 			);
-			 
+
 			$product_categories = get_terms( 'product_cat', $cat_args );
 
 			require_once WFOP_TEMP_DIR . '/admin/add-slot-to-product.php';
@@ -102,84 +101,84 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 		 */
 		public function get_settings( $section = null ) {
 
-			$orderby = 'name';
-			$order = 'asc';
-			$hide_empty = false ;
-			$cat_args = array(
-			    'orderby'    => $orderby,
-			    'order'      => $order,
-			    'hide_empty' => $hide_empty,
+			$orderby    = 'name';
+			$order      = 'asc';
+			$hide_empty = false;
+			$cat_args   = array(
+				'orderby'    => $orderby,
+				'order'      => $order,
+				'hide_empty' => $hide_empty,
 			);
-			 
+
 			$product_cat = get_terms( 'product_cat', $cat_args );
 
 			$product_categories['all'] = 'All';
 
 			foreach ( $product_cat as $key => $value ) {
-				$product_categories[$value->term_id] = 'ID ' . $value->term_id . '-' . $value->name;
+				$product_categories[ $value->term_id ] = 'ID ' . $value->term_id . '-' . $value->name;
 			};
 
 			$settings = array(
-				'section_1'                    => array(
+				'section_1'        => array(
 					'name'     => __( 'Time Slots Ordering:', 'wc_food_ordering_plugin' ),
 					'type'     => 'title',
 					'desc'     => __( '<b>Working Hours</b>', 'wc_food_ordering_plugin' ),
 					'desc_tip' => true,
 					'id'       => $this->id . '_section-time',
 				),
-				'time_from'                    => array(
+				'time_from'        => array(
 					'name' => __( 'Time From:', 'wc_food_ordering_plugin' ),
 					'type' => 'time',
 					'id'   => $this->id . '_time_from',
 				),
-				'time_to'                      => array(
+				'time_to'          => array(
 					'name' => __( 'Time To:', 'wc_food_ordering_plugin' ),
 					'type' => 'time',
 					'id'   => $this->id . '_time_to',
 				),
-				'section_1_end'                => array(
+				'section_1_end'    => array(
 					'type' => 'sectionend',
 					'id'   => $this->id . '_end_section-time',
 				),
-				'section_2'                    => array(
-					'name'     => __( 'Create Time Slots:', 'wc_food_ordering_plugin' ),
-					'type'     => 'title',
-					'id'       => $this->id . '_section_2-time',
+				'section_2'        => array(
+					'name' => __( 'Create Time Slots:', 'wc_food_ordering_plugin' ),
+					'type' => 'title',
+					'id'   => $this->id . '_section_2-time',
 				),
-				'time_interval'                => array(
-					'title' => __( 'Time Intervals', 'wc_food_ordering_plugin' ),
-					'type' => 'select',
+				'time_interval'    => array(
+					'title'   => __( 'Time Intervals', 'wc_food_ordering_plugin' ),
+					'type'    => 'select',
 					'options' => $this->all_intervals,
-					'id'   => $this->id . '_time_interval',
+					'id'      => $this->id . '_time_interval',
 				),
-				'no_of_pieces'                => array(
+				'no_of_pieces'     => array(
 					'title' => __( 'Number of pieces per time slot (per product type).', 'wc_food_ordering_plugin' ),
-					'type' => 'number',
-					'id'   => $this->id . '_no_of_pieces',
+					'type'  => 'number',
+					'id'    => $this->id . '_no_of_pieces',
 				),
 				'add_slots_to_cat' => array(
-					'title' => __( 'Affected Products', 'wc_food_ordering_plugin' ),
-					'type' => 'multiselect',
+					'title'   => __( 'Affected Products', 'wc_food_ordering_plugin' ),
+					'type'    => 'multiselect',
 					'options' => $product_categories,
 					// 'custom_attributes' => array(
-					// 	'multiple' => 'true',
+					// 'multiple' => 'true',
 					// ),
-					'id'   => $this->id . '_add_slots_to_cat',
+					'id'      => $this->id . '_add_slots_to_cat',
 				),
-				'section_2_end'                => array(
+				'section_2_end'    => array(
 					'type' => 'sectionend',
 					'id'   => $this->id . '_end_section_2-time',
 				),
-				'section_3'                    => array(
+				'section_3'        => array(
 					'name' => __( 'All Time Slots Data:', 'wc_food_ordering_plugin' ),
 					'type' => 'title',
 					'id'   => $this->id . '_section_3-time',
 				),
-				'all_slots_table'              => array(
+				'all_slots_table'  => array(
 					'type' => 'show_all_added_slots',
 					'id'   => $this->id . '_all_slots_table',
 				),
-				'section_3_end'                => array(
+				'section_3_end'    => array(
 					'type' => 'sectionend',
 					'id'   => $this->id . '_end_section_3-time',
 				),
@@ -205,19 +204,19 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 
 			if ( isset( $_POST['wc_food_ordering_plugin_time_from'] ) && isset( $_POST['wc_food_ordering_plugin_time_to'] ) && isset( $_POST['wc_food_ordering_plugin_time_interval'] ) ) {
 				$StartTime = $_POST['wc_food_ordering_plugin_time_from'];
-				$EndTime = $_POST['wc_food_ordering_plugin_time_to'];
-				$Duration = $_POST['wc_food_ordering_plugin_time_interval'];
+				$EndTime   = $_POST['wc_food_ordering_plugin_time_to'];
+				$Duration  = $_POST['wc_food_ordering_plugin_time_interval'];
 
-				$total_slots = total_slots($StartTime, $EndTime, $Duration);
+				$total_slots = total_slots( $StartTime, $EndTime, $Duration );
 
 				update_option( 'wfop_total_slots', $total_slots, 0 );
 			}
-			
-			if( isset( $_POST['wc_food_ordering_plugin_add_slots_to_cat'] )  ){
 
-				if( in_array( 'all', $_POST['wc_food_ordering_plugin_add_slots_to_cat'] ) ){
+			if ( isset( $_POST['wc_food_ordering_plugin_add_slots_to_cat'] ) ) {
 
-					$_POST['wc_food_ordering_plugin_add_slots_to_cat'] = array('all' => 'all');
+				if ( in_array( 'all', $_POST['wc_food_ordering_plugin_add_slots_to_cat'] ) ) {
+
+					$_POST['wc_food_ordering_plugin_add_slots_to_cat'] = array( 'all' => 'all' );
 				}
 			}
 
