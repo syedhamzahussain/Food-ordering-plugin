@@ -3,3 +3,23 @@
 #wfop_cat{width: 100%;}
 
 #wfop_shop_wrapper{width: 100%;}
+
+#wfop_calendar{width: 100%;}
+.wfop_date{padding-right: 10px;    width: 11.5%;float: left;}
+
+.wfop_indi_product_div{width: 200px;}
+
+.wfop_row{float: left;width: 100%;}
+
+.wfop_product{ float:left; width: 23%;padding-right: 10px;padding-bottom: 10px;color: black; }
+
+.wfop_title_p{float: left;}
+
+.wfop_price_p{float: right;}
+
+.wfop_pro_excerpt{float: left;width: 100%;}
+.wfop_indi_pro_title_n_price{float: left;width: 100%;}
+
+.wfop_time_title{font-size: 35px;}
+
+.wfop_date.active button{background-color: #7295ca;}
