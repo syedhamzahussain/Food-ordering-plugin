@@ -10,9 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php
 		foreach ( $seven_days as $key => $day ) {
 			if ( $key == 0 ) {
-				echo "<span class='wfop_date active'>";
+				$today = $day;
+				echo "<span class='wfop_date active' data-date='" . $day . "'>";
 			} else {
-				echo "<span class='wfop_date'>";
+				echo "<span class='wfop_date' data-date='" . $day . "'>";
 			}
 			?>
 				<button type="button"><?php echo $day; ?></button>

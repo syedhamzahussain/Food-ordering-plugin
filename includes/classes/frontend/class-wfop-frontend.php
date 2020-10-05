@@ -26,9 +26,56 @@ if ( ! class_exists( 'WFOP_FRONTEND' ) ) {
 		}
 
 		public function init() {
-
+			$this->create_single_product_page();
 			add_shortcode( 'wfop_shop', array( $this, 'wfop_shop_shortcode' ) );
+			add_shortcode( 'wfop_product', array( $this, 'wfop_product_shortcode' ) );
+			add_filter( 'the_title', array( $this, 'filter_function_name' ) );
+			add_filter( 'woocommerce_get_item_data', array( $this, 'iconic_display_engraving_text_cart' ), 10, 2 );
 
+		}
+
+		public function iconic_display_engraving_text_cart( $item_data, $cart_item ) {
+
+			if ( empty( $cart_item['date'] ) && empty( $cart_item['time'] ) ) {
+
+				return $item_data;
+
+			}
+
+			$item_data['date'] = array(
+
+				'key'     => __( 'Date' ),
+
+				'value'   => wc_clean( $cart_item['date'] ),
+
+				'display' => '',
+
+			);
+
+			$item_data['time'] = array(
+
+				'key'     => __( 'time' ),
+
+				'value'   => wc_clean( $cart_item['time'] ),
+
+				'display' => '',
+
+			);
+
+			return $item_data;
+
+		}
+
+
+		public function filter_function_name( $title ) {
+			$product_id = $_GET['product_id'];
+			$product    = wc_get_product( $product_id );
+
+			if ( $title == 'Single Food Product' && ! empty( $product_id ) ) {
+				return $title = __( $product->get_name() );
+			} else {
+				return $title;
+			}
 		}
 
 		public function wfop_shop_shortcode() {
@@ -41,7 +88,34 @@ if ( ! class_exists( 'WFOP_FRONTEND' ) ) {
 
 			$all_eligible_products = get_all_eligible_products();
 
+			$Single_Food_Product_page = get_page_by_title( 'Single Food Product' );
+
 			include WFOP_TEMP_DIR . '/frontend/template-wfop_shortcode.php';
+
+		}
+
+		public function wfop_product_shortcode() {
+			include WFOP_TEMP_DIR . '/frontend/template-wfop_product-shortcode.php';
+
+		}
+
+		public function create_single_product_page() {
+
+			$Single_Food_Product_page_template = ''; // ex. template-custom.php. Leave blank if you don't want a custom page template.
+
+			$Single_Food_Product_page_check = get_page_by_title( 'Single Food Product' );
+
+			$Single_Food_Product_page = array(
+				'post_type'    => 'page',
+				'post_title'   => 'Single Food Product',
+				'post_content' => '<!-- wp:shortcode -->[wfop_product]<!-- /wp:shortcode -->',
+				'post_status'  => 'publish',
+				'post_author'  => 1,
+			);
+
+			if ( ! isset( $Single_Food_Product_page_check->ID ) ) {
+				$Single_Food_Product_id = wp_insert_post( $Single_Food_Product_page );
+			}
 
 		}
 

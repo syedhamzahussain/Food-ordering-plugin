@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wfop_row">
 		<p><span class="wfop_time_title"><b><?php echo $s_time; ?></b></span></p>
 		<?php foreach ( $all_eligible_products as $key => $value ) { ?>
-		<a href="#">
+		<a class='wfop_indi_pro_url' href="<?php echo $Single_Food_Product_page->guid . '?product_id=' . $value->id . '&time=' . $s_time . '&date='; ?>">
 			<div class="wfop_product">
 					<div class="img_div_wfop_product">
 						<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $value->id ), 'single-post-thumbnail' ); ?>

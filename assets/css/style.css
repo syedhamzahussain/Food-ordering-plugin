@@ -23,3 +23,11 @@
 .wfop_time_title{font-size: 35px;}
 
 .wfop_date.active button{background-color: #7295ca;}
+
+#wfop_product_wrapper_div{width: 50%;
+	float: left;}
+
+.wfop_single_pro_title_n_price{width: 100%;
+	float: left;}
+.wfop_single_title_p{float: left;font-size: 30px;}
+.wfop_single_price_p{float: right;}
