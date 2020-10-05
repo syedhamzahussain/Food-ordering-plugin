@@ -30,11 +30,23 @@ if ( ! class_exists( 'WFOP_FRONTEND' ) ) {
 			add_shortcode( 'wfop_shop', array( $this, 'wfop_shop_shortcode' ) );
 			add_shortcode( 'wfop_product', array( $this, 'wfop_product_shortcode' ) );
 			add_filter( 'the_title', array( $this, 'filter_function_name' ) );
-			add_filter( 'woocommerce_get_item_data', array( $this, 'iconic_display_engraving_text_cart' ), 10, 2 );
+			add_filter( 'woocommerce_get_item_data', array( $this, 'wfop_display_cart_meta' ), 10, 2 );
+
+			add_action( 'woocommerce_add_order_item_meta', array( $this, 'wfop_add_order_item_meta') , 10, 3 );
 
 		}
 
-		public function iconic_display_engraving_text_cart( $item_data, $cart_item ) {
+		// Add order item meta.
+		
+		function wfop_add_order_item_meta ( $item_id, $cart_item, $cart_item_key ) {
+		    if ( isset( $cart_item[ 'date' ] ) && isset( $cart_item[ 'time' ] ) ) {
+		        
+		        wc_add_order_item_meta( $item_id, 'date', $cart_item[ 'date' ] );
+		        wc_add_order_item_meta( $item_id, 'time', $cart_item[ 'time' ] );
+		    }
+		}
+
+		public function wfop_display_cart_meta( $item_data, $cart_item ) {
 
 			if ( empty( $cart_item['date'] ) && empty( $cart_item['time'] ) ) {
 
