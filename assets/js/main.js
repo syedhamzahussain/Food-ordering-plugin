@@ -31,7 +31,7 @@ jQuery( document ).ready(
 						type: "post",
 						data: {action: "wfop_add_to_cart", product_id: id, quantity: quantity,date: date,time: time},
 						success: function (response) {
-							window.location.href;
+							window.location;
 						}
 								}
 				);
