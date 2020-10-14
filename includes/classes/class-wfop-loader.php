@@ -38,6 +38,7 @@ if ( ! class_exists( 'WFOP_LOADER' ) ) {
 			}
 
 			require_once WFOP_PLUGIN_DIR . '/includes/classes/admin/class-wfop-register-woo-tab.php';
+			require_once WFOP_PLUGIN_DIR . '/includes/classes/admin/class-wfop-todays-order.php';
 
 			require_once WFOP_PLUGIN_DIR . '/includes/classes/frontend/class-wfop-frontend.php';
 
