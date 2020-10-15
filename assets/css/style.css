@@ -35,7 +35,7 @@
 #todays_orders_backend{background-color:white;width: 100%;height: 100%;float: left;min-height: 750px; }
 .slot_row_back{    width: 35%;}
 .single_order_row{    width:100%;float:left;border: #ad71c6;
-    border-style: solid;margin: 10px;border-radius: 8px;border-width: 1.5px;}
+	border-style: solid;margin: 10px;border-radius: 8px;border-width: 1.5px;}
 .wfop_back_name{float: left;width: 50%;font-size: 20px;}
 .wfop_back_quantity{
   float: right;
@@ -45,7 +45,7 @@
   border-radius: 50%;
   display: inline-block;text-align: center;}
 .wfop_back_customer{float: right;width: 50%;    text-align: right;
-    font-size: 30px;}
+	font-size: 30px;}
 .wfop_back_image{width: 50%;float: left;}
 .wfop_back_image img{width: 100px;height: 100px;}
 .wfop_back_slot{font-size: 40px;color: #56b9be;}

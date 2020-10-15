@@ -16,7 +16,7 @@ if ( ! class_exists( 'WFOP_TODAYS_ORDER' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {
-			
+
 			add_action( 'init', array( $this, 'init' ) );
 
 		}
