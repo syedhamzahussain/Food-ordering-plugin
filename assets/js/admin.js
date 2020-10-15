@@ -11,5 +11,12 @@ jQuery( document ).ready(
 			}
 		);
 
+		$('.single_order_row').each( function() {
+			if( !$.trim( $(this).html() ).length ) {
+				$(this).parent().css('min-height','50px');
+				$(this).remove();
+			}
+		});
+
 	}
 );
