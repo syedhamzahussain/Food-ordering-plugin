@@ -26,14 +26,21 @@ if($all_valid_order){
 	$total_slots  = get_option( 'wfop_total_slots', true );
 	asort($all_valid_order);
 	foreach ($total_slots as $key => $time) {
-	
+	echo $time;
 	foreach ($all_valid_order as $result_array) {
+		if($flag == true){
+			$flag = false;
+				continue;
+		}
 		foreach ($result_array as $key => $value) {
-			if($time == $value->slot){
-				echo $value;
+			if($key == 'slot' && $time != $value){
+				$flag = true;
+				break;
 			}
+			echo $value;
 			
 		}
+		echo "<br>";
 	}
 
 }
