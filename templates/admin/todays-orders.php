@@ -14,8 +14,10 @@ foreach ( $orders as $key => $value ) {
 		$time = $item->get_meta( 'time', true );
 
 		if ( ! empty( $date ) && ! empty( $time ) ) {
-			$image = '';
-			$image = wp_get_attachment_image_src( $item->get_id(), 'single-post-thumbnail' );
+
+			//$product = wc_get_product( $item->get_id() );
+			echo $item->get_product_id();
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $item->get_product_id() ), 'single-post-thumbnail' );
 
 
 			array_push(
