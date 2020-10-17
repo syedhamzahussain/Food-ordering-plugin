@@ -30,68 +30,70 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 
 		}
 
-		public function get_pieces_by_date(){
+		public function get_pieces_by_date() {
 
-				if (isset($_REQUEST['date'])) {
+			if ( isset( $_REQUEST['date'] ) ) {
 
-			    	$date = date( 'Y' ).'-'.trim( sanitize_text_field( wp_unslash( $_REQUEST['date'] ) ) );
+				$date = date( 'Y' ) . '-' . trim( sanitize_text_field( wp_unslash( $_REQUEST['date'] ) ) );
 
-				}
-				else{
-					$date = date( 'Y-m-d' );
-				}
+			} else {
+				$date = date( 'Y-m-d' );
+			}
 
 				$new_array = array();
-				$details = get_products_details();
+				$details   = get_products_details();
 
-				foreach (get_products_details() as $key => $value) {
-					$details[$key]['date'] = $date;
-					
-				}
+			foreach ( get_products_details() as $key => $value ) {
+				$details[ $key ]['date'] = $date;
 
-				
-				 
-				$orders          = wc_get_orders($args);
+			}
+
+				$orders      = wc_get_orders( $args );
 				$done_orders = array();
 
-				foreach ( $orders as $key => $value ) {
+			foreach ( $orders as $key => $value ) {
 
 				foreach ( $value->get_items() as $item_id => $item ) {
 
 					$item_date = $item->get_meta( 'date', true );
 					$item_time = $item->get_meta( 'time', true );
 
-					if ( (! empty( $item_date ) && ! empty( $item_time ) ) && ($item_date ==  $date  ) ) {
-						array_push($done_orders, array('id' => $item->get_product_id() ,'quantity' => $item->get_quantity(),'slot' => $item_time,'date' =>  $item_date) );
-						
+					if ( ( ! empty( $item_date ) && ! empty( $item_time ) ) && ( $item_date == $date ) ) {
+						array_push(
+							$done_orders,
+							array(
+								'id'       => $item->get_product_id(),
+								'quantity' => $item->get_quantity(),
+								'slot'     => $item_time,
+								'date'     => $item_date,
+							)
+						);
+
 					} else {
 						continue;
 					}
 				}
 			}
-				
-			foreach ($details as $key => $value) {
 
-				foreach ($done_orders as $o_key) {
-					if($details[$key]['id'] == $o_key['id'] && $details[$key]['date'] == $o_key['date'] && $details[$key]['slot'] == $o_key['slot']){
+			foreach ( $details as $key => $value ) {
 
-						$details[$key]['pieces'] = $details[$key]['pieces'] - $o_key['quantity'];
+				foreach ( $done_orders as $o_key ) {
+					if ( $details[ $key ]['id'] == $o_key['id'] && $details[ $key ]['date'] == $o_key['date'] && $details[ $key ]['slot'] == $o_key['slot'] ) {
+
+						$details[ $key ]['pieces'] = $details[ $key ]['pieces'] - $o_key['quantity'];
 					}
 				}
-				
 			}
 
-			
-			if (isset($_REQUEST['date'])) {
-				wp_die(wp_json_encode($details));
-			}
-			else{
-				wp_die(wp_json_encode($details));
+			if ( isset( $_REQUEST['date'] ) ) {
+				wp_die( wp_json_encode( $details ) );
+			} else {
+				wp_die( wp_json_encode( $details ) );
 			}
 
 		}
 
-		
+
 
 
 		public function wfop_add_to_cart() {
