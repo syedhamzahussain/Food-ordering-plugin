@@ -1,8 +1,6 @@
 <?php
 
-$args = array(
-	'date_created' => date( 'Y-m-d' ),
-);
+$args = array();
 
 $orders          = wc_get_orders( $args );
 $all_valid_order = array();
@@ -13,7 +11,7 @@ foreach ( $orders as $key => $value ) {
 		$date = $item->get_meta( 'date', true );
 		$time = $item->get_meta( 'time', true );
 
-		if ( ! empty( $date ) && ! empty( $time ) ) {
+		if ( (! empty( $date ) && ! empty( $time ) ) && $date == date('Y-m-d') ) {
 
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $item->get_product_id() ), 'single-post-thumbnail' );
 

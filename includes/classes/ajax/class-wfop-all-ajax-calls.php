@@ -106,7 +106,7 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 				global $woocommerce;
 				WC()->cart->add_to_cart(
 					$product_id,
-					1,
+					$quantity,
 					0,
 					null,
 					array(
