@@ -46,3 +46,24 @@ function get_all_eligible_products() {
 			return $all_products = wc_get_products( $args );
 
 }
+
+function get_products_details(){
+	$total_slots = get_option( 'wfop_total_slots', true );
+	$all_products = get_all_eligible_products();
+	$new_array =array();
+
+	foreach ($all_products as $key => $value) {
+
+		$pieces = $value->get_meta( 'wfop_ind_piece', true );
+
+		if(empty($pieces)){
+			$pieces = get_option( 'wc_food_ordering_plugin_no_of_pieces', true );
+		}
+
+		foreach ($total_slots as $t_key => $time) {
+			array_push($new_array, array('id' => $value->get_id(),'pieces' => $pieces,'slot' => $time ));
+		}
+	}
+	
+	return $new_array;
+}

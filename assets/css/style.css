@@ -50,3 +50,8 @@
 .wfop_back_image img{width: 100px;height: 100px;}
 .wfop_back_slot{font-size: 40px;color: #56b9be;}
 .wfop_back_order{float: right;text-align: right;width: 50%;color: green;}
+.pieces{height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;text-align: center;    margin-top: -30px;position: absolute;}

@@ -38,5 +38,40 @@ jQuery( document ).ready(
 			}
 		);
 
+		$( document ).on(
+			"click",
+			".wfop_date",
+			function(event){
+			$('.wfop_date').removeClass('active');
+			$(this).addClass('active');
+			var date     = $( this ).text();
+
+			jQuery.ajax(
+					{
+						url: url,
+						type: "post",
+						data: {action: "get_pieces_by_date", date: date},
+						success: function (response) {
+							obj = JSON.parse(response);
+
+							$( obj ).each(function( index, value ) {
+							 
+							 
+							 
+							  $( '.pieces_'+value.id+'_'+value.slot.replace(":", "-") ).text(value.pieces);
+							  
+							  
+							});
+						}
+					}
+				);
+
+			
+
+
+
+
+		});
+
 	}
 );
