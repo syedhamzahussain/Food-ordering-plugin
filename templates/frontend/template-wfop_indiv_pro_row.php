@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="img_div_wfop_product">
 						<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $value->id ), 'single-post-thumbnail' ); ?>
 						<img src="<?php echo $image[0]; ?>">
+						<?php
+						
+						$pieces = get_no_pieces_by_product($value->id , $s_time);
+
+						?>
 						<span class="pieces <?php echo 'pieces_'.$value->id.'_'.str_replace(':','-',$s_time); ?>"><?php echo $pieces; ?></span>
 					</div>
 					<div class="wfop_indi_pro_title_n_price">

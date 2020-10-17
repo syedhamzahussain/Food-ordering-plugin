@@ -32,7 +32,14 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 
 		public function get_pieces_by_date(){
 
-			    $date = date( 'Y' ).'-'.trim( sanitize_text_field( wp_unslash( $_REQUEST['date'] ) ) );
+				if (isset($_REQUEST['date'])) {
+
+			    	$date = date( 'Y' ).'-'.trim( sanitize_text_field( wp_unslash( $_REQUEST['date'] ) ) );
+
+				}
+				else{
+					$date = date( 'Y-m-d' );
+				}
 
 				$new_array = array();
 				$details = get_products_details();
@@ -75,8 +82,12 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 			}
 
 			
-			
-			wp_die(wp_json_encode($details));
+			if (isset($_REQUEST['date'])) {
+				wp_die(wp_json_encode($details));
+			}
+			else{
+				wp_die(wp_json_encode($details));
+			}
 
 		}
 
