@@ -37,7 +37,7 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 				'Wednesday' => 'Wednesday',
 				'Thursday'  => 'Thursday',
 				'Friday'    => 'Friday',
-				'Saturday' => 'Saturday',
+				'Saturday'  => 'Saturday',
 				'Sunday'    => 'Sunday',
 			);
 

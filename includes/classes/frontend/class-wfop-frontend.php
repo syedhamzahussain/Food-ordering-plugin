@@ -95,8 +95,8 @@ if ( ! class_exists( 'WFOP_FRONTEND' ) ) {
 		}
 
 		public function wfop_shop_shortcode() {
-			
-			$open_days = get_option( 'wc_food_ordering_plugin_open_days', true );
+
+			$open_days    = get_option( 'wc_food_ordering_plugin_open_days', true );
 			$seven_days   = get_dates_for_calendar();
 			$intervals    = get_option( 'wc_food_ordering_plugin_time_interval', true );
 			$total_slots  = get_option( 'wfop_total_slots', true );

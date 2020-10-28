@@ -11,7 +11,7 @@ if ( isset( $_GET['date'] ) ) {
 	$date = date( 'Y-' ) . $_GET['date'];
 }
 
-$day_name  = date( 'l', strtotime($date) );
+$day_name  = date( 'l', strtotime( $date ) );
 $open_days = get_option( 'wc_food_ordering_plugin_open_days', true );
 
 
