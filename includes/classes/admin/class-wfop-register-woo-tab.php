@@ -32,13 +32,13 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 			);
 
 			$this->days = array(
-				'monday'    => 'Monday',
-				'tuesday'   => 'Tuesday',
-				'wednesday' => 'Wednesday',
-				'thursday'  => 'Thursday',
-				'friday'    => 'Friday',
-				'satuarday' => 'Satuarday',
-				'sunday'    => 'Sunday',
+				'Monday'    => 'Monday',
+				'Tuesday'   => 'Tuesday',
+				'Wednesday' => 'Wednesday',
+				'Thursday'  => 'Thursday',
+				'Friday'    => 'Friday',
+				'Satuarday' => 'Satuarday',
+				'Sunday'    => 'Sunday',
 			);
 
 			add_action( 'init', array( $this, 'init' ) );
@@ -60,13 +60,13 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 
 			// adding default data
 			$days = array(
-				'monday',
-				'tuesday',
-				'wednesday',
-				'thursday',
-				'friday',
-				'satuarday',
-				'sunday',
+				'Monday',
+				'Tuesday',
+				'Wednesday',
+				'Thursday',
+				'Friday',
+				'Satuarday',
+				'Sunday',
 			);
 
 			if ( empty( get_option( 'wc_food_ordering_plugin_open_days', true ) ) ) {

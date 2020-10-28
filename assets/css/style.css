@@ -56,3 +56,4 @@
   border-radius: 50%;
   display: inline-block;text-align: center;    margin-top: -30px;position: absolute;}
   .wfop_not_available{color:red;font-size: 20px;}
+  .wfop_not_open{font-size: 25px;color: red;}
