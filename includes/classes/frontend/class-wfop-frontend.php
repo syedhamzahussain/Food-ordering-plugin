@@ -80,14 +80,17 @@ if ( ! class_exists( 'WFOP_FRONTEND' ) ) {
 
 
 		public function filter_function_name( $title ) {
-			$product_id = $_GET['product_id'];
+			 $product_id = $_GET['product_id'];
+			if ($product_id) {
+				
 			$product    = wc_get_product( $product_id );
 
 			if ( $title == 'Single Food Product' && ! empty( $product_id ) ) {
 				return $title = __( $product->get_name() );
-			} else {
-				return $title;
+			} 
 			}
+
+			return $title;
 		}
 
 		public function wfop_shop_shortcode() {
