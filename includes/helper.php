@@ -27,6 +27,28 @@ function get_dates_for_calendar() {
 
 }
 
+function get_dates_for_calendar_ajax($want,$date) {
+	if($want == 'next'){
+
+	
+	for ( $i = 1; $i <= 7; $i++ ) {
+		 $dates[ $i ] = date('m-d', strtotime('+' . $i . ' days', strtotime($date)));
+	}
+
+	}
+	elseif($want == 'previous'){
+
+	
+	for ( $i = 8; $i >= 1; $i-- ) {
+		 $dates[ $i ] = date('m-d', strtotime('-' . $i . ' days', strtotime($date)));
+	}
+
+	}
+
+			return $dates;
+
+}
+
 function get_all_eligible_products() {
 
 			$affected_cat = get_option( 'wc_food_ordering_plugin_add_slots_to_cat', null );
