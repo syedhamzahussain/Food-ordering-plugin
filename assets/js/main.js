@@ -24,6 +24,7 @@ jQuery( document ).ready(
 				var id       = $( this ).attr( 'data-id' );
 				var date     = $( this ).attr( 'data-date' );
 				var time     = $( this ).attr( 'data-time' );
+				back = $("#btn_wfop_sinlge_cart").attr('data-ref'); 
 
 				jQuery.ajax(
 					{
@@ -31,7 +32,31 @@ jQuery( document ).ready(
 						type: "post",
 						data: {action: "wfop_add_to_cart", product_id: id, quantity: quantity,date: date,time: time},
 						success: function (response) {
-							location.reload();
+							location.href = back; 
+						}
+					}
+				);
+			}
+		);
+
+		$( document ).on(
+			"click",
+			".add_and_go_checkout",
+			function(event){
+				var quantity = $( '#wfop_qty' ).val();
+				var id       = $( "#btn_wfop_sinlge_cart").attr( 'data-id' );
+				var date     = $( "#btn_wfop_sinlge_cart" ).attr( 'data-date' );
+				var time     = $( "#btn_wfop_sinlge_cart" ).attr( 'data-time' );
+				
+				checkout = $(this).attr('data-url'); 
+
+				jQuery.ajax(
+					{
+						url: url,
+						type: "post",
+						data: {action: "wfop_add_to_cart", product_id: id, quantity: quantity,date: date,time: time},
+						success: function (response) {
+							location.href = checkout; 
 						}
 					}
 				);

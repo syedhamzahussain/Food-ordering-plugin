@@ -11,13 +11,16 @@ if ( isset( $_GET['date'] ) ) {
 	$date = date( 'Y-' ) . $_GET['date'];
 }
 
-$day_name  = date( 'l', $date );
+$day_name  = date( 'l', strtotime($date) );
 $open_days = get_option( 'wc_food_ordering_plugin_open_days', true );
 
 
 $pieces = get_no_pieces_by_product( $product_id, $time );
 
 $product = wc_get_product( $product_id );
+
+global $woocommerce;
+$checkout_url = $woocommerce->cart->get_checkout_url();
 ?>
 <div id="wfop_product_wrapper_div">
 	<div class="img_single_wfop_product">
@@ -27,7 +30,7 @@ $product = wc_get_product( $product_id );
 	</div>
 	<div class="wfop_single_pro_title_n_price">
 		<span class="wfop_single_title_p"><b><?php echo $product->get_name(); ?></b></span>
-		
+		<span class="wfop_single_time_p"><b><?php echo $time; ?></b></span>
 	</div>
 	<div class="wfop_single_pro_excerpt">
 		<p><?php echo get_the_excerpt( $product_id ); ?></p>
@@ -43,16 +46,19 @@ $product = wc_get_product( $product_id );
 	<br>
 	<div>
 		<?php if ( $pieces > 0 ) { ?>
-		<button type="button" id='btn_wfop_sinlge_cart' data-id='<?php echo $product_id; ?>' data-date='<?php echo $date; ?>' data-time='<?php echo $time; ?>'>Add To Cart</button>	
+		<button type="button" id='btn_wfop_sinlge_cart' data-ref='<?php echo wp_get_referer(); ?>' data-id='<?php echo $product_id; ?>' data-date='<?php echo $date; ?>' data-time='<?php echo $time; ?>'>Add Another</button>
+		<button class ="add_and_go_checkout" data-url="<?php echo $checkout_url; ?>" type="button">Checkout</button>
+		<br>
+		<br>
 		<?php } else { ?>
 			<span class="wfop_not_available">Sorry , This Item is currently not Available in this Time slot</span>
 				<br>
-				
+		
 		<?php } ?>
 	</div>
 		<?php
 	} else {
-		echo "<span class='wfop_not_open'>Sorry , Our Resturant is not Open on " . $day_name . '</span>';
+		echo "<span class='wfop_not_open'>We're sorry, we are not open this day</span>";
 	}
 	?>
 	<a href="<?php echo wp_get_referer(); ?>"><button type="button">Go Back</button></a>
