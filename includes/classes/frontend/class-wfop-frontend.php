@@ -80,16 +80,15 @@ if ( ! class_exists( 'WFOP_FRONTEND' ) ) {
 
 
 		public function filter_function_name( $title ) {
-			
-			if ( isset( $_GET['product_id'] ) ) {
-			
-			$product_id = $_GET['product_id'];
-			$product    = wc_get_product( $product_id );
 
-			if ( $title == 'Single Food Product' && ! empty( $product_id ) ) {
-				return $title = __( $product->get_name() );
-			}
-			 
+			if ( isset( $_GET['product_id'] ) ) {
+
+				$product_id = $_GET['product_id'];
+				$product    = wc_get_product( $product_id );
+
+				if ( $title == 'Single Food Product' && ! empty( $product_id ) ) {
+					return $title = __( $product->get_name() );
+				}
 			}
 
 			return $title;

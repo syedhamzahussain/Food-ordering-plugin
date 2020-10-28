@@ -9,7 +9,7 @@ $intervals    = get_option( 'wc_food_ordering_plugin_time_interval', true );
 $total_slots  = get_option( 'wfop_total_slots', true );
 $pieces       = get_option( 'wc_food_ordering_plugin_no_of_pieces', true );
 $affected_cat = get_option( 'wc_food_ordering_plugin_add_slots_to_cat', null );
-$open_days = get_option('wc_food_ordering_plugin_open_days',true);
+$open_days    = get_option( 'wc_food_ordering_plugin_open_days', true );
 
 ?>
 <table class="table widefat">
@@ -48,9 +48,10 @@ $open_days = get_option('wc_food_ordering_plugin_open_days',true);
 							<?php
 							foreach ( $open_days as $key => $value ) {
 
-								echo $value.' -';
+								echo $value . ' -';
 							}
-							?>	
+							?>
+								
 						</td>
 					</tr>
 				<?php } ?>

@@ -32,16 +32,14 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 			);
 
 			$this->days = array(
-				'monday'  => 'Monday',
-				'tuesday'  => 'Tuesday',
-				'wednesday'  => 'Wednesday',
+				'monday'    => 'Monday',
+				'tuesday'   => 'Tuesday',
+				'wednesday' => 'Wednesday',
 				'thursday'  => 'Thursday',
-				'friday' => 'Friday',
+				'friday'    => 'Friday',
 				'satuarday' => 'Satuarday',
-				'sunday' => 'Sunday',
+				'sunday'    => 'Sunday',
 			);
-
-
 
 			add_action( 'init', array( $this, 'init' ) );
 
@@ -70,12 +68,11 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 				'satuarday',
 				'sunday',
 			);
-			
-			if( empty( get_option('wc_food_ordering_plugin_open_days',true) ) ){
-				update_option( 'wc_food_ordering_plugin_open_days', $days);
+
+			if ( empty( get_option( 'wc_food_ordering_plugin_open_days', true ) ) ) {
+				update_option( 'wc_food_ordering_plugin_open_days', $days );
 			}
-			
-			// 
+
 		}
 
 		public function product_level_pieces() {
@@ -224,7 +221,7 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 					'options' => $product_categories,
 					'id'      => $this->id . '_add_slots_to_cat',
 				),
-				'open_days' => array(
+				'open_days'        => array(
 					'title'   => __( 'Open Days', 'wc_food_ordering_plugin' ),
 					'type'    => 'multiselect',
 					'options' => $this->days,
