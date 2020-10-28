@@ -34,9 +34,9 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 			add_action( 'wp_ajax_wfop_delete_order', array( $this, 'wfop_delete_order' ) );
 
 		}
-		public function wfop_delete_order(){
+		public function wfop_delete_order() {
 			if ( isset( $_REQUEST['order_id'] ) ) {
-				wp_trash_post($_REQUEST['order_id']);
+				wp_trash_post( $_REQUEST['order_id'] );
 			}
 		}
 

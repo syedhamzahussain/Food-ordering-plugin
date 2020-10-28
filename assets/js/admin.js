@@ -2,16 +2,15 @@ jQuery( document ).ready(
 	function ($) {
 
 		url = wfop_ajax.ajaxurl;
-		
 
 		$( document ).on(
 			"click",
 			".wfop_delete",
 			function(event){
-				var order_id          = $( this ).attr( 'data-id' );
+				var order_id = $( this ).attr( 'data-id' );
 
-				var done = confirm('Are you sure you want to delete order#'+ order_id +' ?');
-				if(done == true){
+				var done = confirm( 'Are you sure you want to delete order#' + order_id + ' ?' );
+				if (done == true) {
 					jQuery.ajax(
 						{
 							url: url,
