@@ -48,7 +48,8 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 			}
 
 			$seven_days = get_dates_for_calendar_ajax( $want, date( 'Y-' ) . $date );
-
+			$open_days = get_option( 'wc_food_ordering_plugin_open_days', true );
+			
 			echo $html = "<span class='previous_week'><button data-want='previous' type='button' id='week_btn'>Previous 7 Days</button></span>";
 			foreach ( $seven_days as $key => $day ) {
 				if ( reset( $seven_days ) == $day ) {
@@ -56,7 +57,14 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 				} else {
 					echo $html = "<span class='wfop_date' data-date='" . $day . "'>";
 				}
-				echo $html = "<button type='button'>" . $day . '</button></span>';
+				$d        = date( 'Y-' ) . $day;
+				$day_name = date( 'D', strtotime( $d ) );
+
+				if ( ! in_array( ( date( 'l', strtotime( $d ) ) ), $open_days ) ) {
+					echo "<button disabled='disabled' type='button'>" . $day_name . '<br>' . $day . '</button></span>';
+				} else {
+					echo "<button type='button'>" . $day_name . '<br>' . $day . '</button></span>';
+				}
 			}
 			echo $html = "<span class='next_week'><button data-want='next' type='button' id='week_btn'>Next 7 Days</button></span>";
 

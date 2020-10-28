@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$day_name = date( 'D', strtotime( $d ) );
 
 			if ( ! in_array( ( date( 'l', strtotime( $d ) ) ), $open_days ) ) {
-				echo "<button disabled type='button'>" . $day_name . '<br>' . $day . '</button>';
+				echo "<button disabled='disabled' type='button'>" . $day_name . '<br>' . $day . '</button>';
 			} else {
 				echo "<button type='button'>" . $day_name . '<br>' . $day . '</button>';
 			}
