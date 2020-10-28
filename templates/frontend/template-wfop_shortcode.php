@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<span class="next_week"><button data-want='next' type="button" id="week_btn">Next 7 Days</button></span>
 	</div>
 		<?php
-		if ( in_array( (date( 'l', strtotime($seven_days[0]) ) ), $open_days ) ) {
+		if ( !in_array( (date( 'l', strtotime($seven_days[0]) ) ), $open_days ) ) {
 			echo "<p style='float:left;'><span class='wfop_not_open'>We're sorry, we are not open this day</span></p>";
 		}
 		else{

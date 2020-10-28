@@ -70,22 +70,36 @@ jQuery( document ).ready(
 				$( '.wfop_date' ).removeClass( 'active' );
 				$( this ).addClass( 'active' );
 				var date = $( this ).text();
+				not_open = false;
+				if ( $(".wfop_not_open")[0] ){
+					not_open =true;
+				}
+
+				$(".wfop_not_open").remove();
+				$("#wfop_shop_wrapper").append('<span id="wait"><h3>Please wait .....</h3></span>');
 
 				jQuery.ajax(
 					{
 						url: url,
 						type: "post",
-						data: {action: "get_pieces_by_date", date: date},
+						data: {action: "get_pieces_by_date", date: date,not_open:not_open},
 						success: function (response) {
-							obj = JSON.parse( response );
+							if(not_open == true){
+								$('#wait').remove();
+								$("#wfop_shop_wrapper").append(response);
+								(".wfop_date").click();
+							}
+							else{
+								obj = JSON.parse( response );
 
-							$( obj ).each(
-								function( index, value ) {
+								$( obj ).each(
+									function( index, value ) {
 
-									$( '.pieces_' + value.id + '_' + value.slot.replace( ":", "-" ) ).text( value.pieces );
+										$( '.pieces_' + value.id + '_' + value.slot.replace( ":", "-" ) ).text( value.pieces );
 
-								}
-							);
+									}
+								);
+							}
 						}
 					}
 				);

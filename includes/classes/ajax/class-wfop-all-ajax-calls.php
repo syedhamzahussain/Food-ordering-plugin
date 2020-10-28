@@ -67,6 +67,25 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 				$date = date( 'Y-m-d' );
 			}
 
+			if ( $_REQUEST['not_open'] == true) {
+			$open_days = get_option( 'wc_food_ordering_plugin_open_days', true );
+			$seven_days   = get_dates_for_calendar();
+			$intervals    = get_option( 'wc_food_ordering_plugin_time_interval', true );
+			$total_slots  = get_option( 'wfop_total_slots', true );
+			$affected_cat = get_option( 'wc_food_ordering_plugin_add_slots_to_cat', null );
+
+			$all_eligible_products = get_all_eligible_products();
+
+			$Single_Food_Product_page = get_page_by_title( 'Single Food Product' );
+
+				foreach ( $total_slots as $key => $s_time ) {
+
+					$html =+ require WFOP_TEMP_DIR . '/frontend/template-wfop_indiv_pro_row.php';
+				}
+
+				wp_die($html);
+			}
+
 				$new_array = array();
 				$details   = get_products_details();
 
