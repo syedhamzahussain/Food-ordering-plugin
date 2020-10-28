@@ -53,7 +53,7 @@ jQuery( document ).ready(
 						data: {action: "get_pieces_by_date", date: date},
 						success: function (response) {
 							obj = JSON.parse( response );
-							console.log(obj);
+
 							$( obj ).each(
 								function( index, value ) {
 
@@ -79,7 +79,6 @@ jQuery( document ).ready(
 				if(want == 'previous'){
 					date = $( ".wfop_date" ).first().text().trim();
 				}
-				console.log(date);
 				
 				$('#wfop_calendar').empty();
 
