@@ -72,15 +72,15 @@ jQuery( document ).ready(
 			"click",
 			"#week_btn",
 			function(event){
-				want = $( this ).attr('data-want');
-				if(want == 'next'){
+				want = $( this ).attr( 'data-want' );
+				if (want == 'next') {
 					date = $( ".wfop_date" ).last().text().trim();
 				}
-				if(want == 'previous'){
+				if (want == 'previous') {
 					date = $( ".wfop_date" ).first().text().trim();
 				}
-				
-				$('#wfop_calendar').empty();
+
+				$( '#wfop_calendar' ).empty();
 
 				jQuery.ajax(
 					{
@@ -88,8 +88,8 @@ jQuery( document ).ready(
 						type: "post",
 						data: {action: "change_calendar",want:want,date:date},
 						success: function (response) {
-							$('#wfop_calendar').html(response);
-							$('.wfop_date.active').click();
+							$( '#wfop_calendar' ).html( response );
+							$( '.wfop_date.active' ).click();
 						}
 					}
 				);

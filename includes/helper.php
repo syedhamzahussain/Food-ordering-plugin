@@ -27,22 +27,17 @@ function get_dates_for_calendar() {
 
 }
 
-function get_dates_for_calendar_ajax($want,$date) {
-	if($want == 'next'){
+function get_dates_for_calendar_ajax( $want, $date ) {
+	if ( $want == 'next' ) {
 
-	
-	for ( $i = 1; $i <= 7; $i++ ) {
-		 $dates[ $i ] = date('m-d', strtotime('+' . $i . ' days', strtotime($date)));
-	}
+		for ( $i = 1; $i <= 7; $i++ ) {
+			 $dates[ $i ] = date( 'm-d', strtotime( '+' . $i . ' days', strtotime( $date ) ) );
+		}
+	} elseif ( $want == 'previous' ) {
 
-	}
-	elseif($want == 'previous'){
-
-	
-	for ( $i = 8; $i >= 1; $i-- ) {
-		 $dates[ $i ] = date('m-d', strtotime('-' . $i . ' days', strtotime($date)));
-	}
-
+		for ( $i = 8; $i >= 1; $i-- ) {
+			 $dates[ $i ] = date( 'm-d', strtotime( '-' . $i . ' days', strtotime( $date ) ) );
+		}
 	}
 
 			return $dates;

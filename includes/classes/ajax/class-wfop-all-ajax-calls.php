@@ -35,27 +35,25 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 
 		public function change_calendar() {
 
-		if(isset($_POST['want']) && isset($_POST['date'])){
-			$want = $_POST['want'];
-			$date = $_POST['date'];
-		}
-
-		$seven_days = get_dates_for_calendar_ajax($want,date( 'Y-' ).$date);
-
-		echo $html =  "<span class='previous_week'><button data-want='previous' type='button' id='week_btn'>Previous 7 Days</button></span>";
-		foreach ( $seven_days as $key => $day ) {
-				if ( reset($seven_days) == $day ) {
-					echo $html =  "<span class='wfop_date active' style='padding-left:8px;' data-date='" . $day . "'>";
-				}
-				else{
-					echo $html =  "<span class='wfop_date' data-date='" . $day . "'>";
-				}
-				echo $html =  "<button type='button'>".$day."</button></span>";
+			if ( isset( $_POST['want'] ) && isset( $_POST['date'] ) ) {
+				$want = $_POST['want'];
+				$date = $_POST['date'];
 			}
-		echo $html =  "<span class='next_week'><button data-want='next' type='button' id='week_btn'>Next 7 Days</button></span>";
 
-		
-		wp_die();
+			$seven_days = get_dates_for_calendar_ajax( $want, date( 'Y-' ) . $date );
+
+			echo $html = "<span class='previous_week'><button data-want='previous' type='button' id='week_btn'>Previous 7 Days</button></span>";
+			foreach ( $seven_days as $key => $day ) {
+				if ( reset( $seven_days ) == $day ) {
+					echo $html = "<span class='wfop_date active' style='padding-left:8px;' data-date='" . $day . "'>";
+				} else {
+					echo $html = "<span class='wfop_date' data-date='" . $day . "'>";
+				}
+				echo $html = "<button type='button'>" . $day . '</button></span>';
+			}
+			echo $html = "<span class='next_week'><button data-want='next' type='button' id='week_btn'>Next 7 Days</button></span>";
+
+			wp_die();
 
 		}
 

@@ -104,7 +104,7 @@ if ( ! class_exists( 'WFOP_FRONTEND' ) ) {
 			$all_eligible_products = get_all_eligible_products();
 
 			$Single_Food_Product_page = get_page_by_title( 'Single Food Product' );
-			
+
 			include WFOP_TEMP_DIR . '/frontend/template-wfop_shortcode.php';
 
 		}

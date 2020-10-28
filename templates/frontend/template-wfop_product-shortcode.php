@@ -11,8 +11,8 @@ if ( isset( $_GET['date'] ) ) {
 	$date = date( 'Y-' ) . $_GET['date'];
 }
 
-$day_name = date('l',$date);
-$open_days    = get_option( 'wc_food_ordering_plugin_open_days', true );
+$day_name  = date( 'l', $date );
+$open_days = get_option( 'wc_food_ordering_plugin_open_days', true );
 
 
 $pieces = get_no_pieces_by_product( $product_id, $time );
@@ -33,8 +33,8 @@ $product = wc_get_product( $product_id );
 		<p><?php echo get_the_excerpt( $product_id ); ?></p>
 	</div>
 	<?php
-		if (in_array($day_name,$open_days )) {
-	?>
+	if ( in_array( $day_name, $open_days ) ) {
+		?>
 	<div>
 		<?php if ( $pieces > 0 ) { ?>
 		<input type="number" min="1" max="<?php echo $pieces_global; ?>" value="1" name="wfop_qty" id="wfop_qty"><span><?php echo __( $pieces . ' Available' ); ?></span><span class="wfop_single_price_p"><b><?php echo wc_price( $product->get_price() ); ?></b></span>
@@ -50,9 +50,10 @@ $product = wc_get_product( $product_id );
 				
 		<?php } ?>
 	</div>
-    	<?php }
-    	else{
-    		echo "<span class='wfop_not_open'>Sorry , Our Resturant is not Open on ".$day_name."</span>";
-    	} ?>
-    <a href="<?php echo wp_get_referer(); ?>"><button type="button">Go Back</button></a>
+		<?php
+	} else {
+		echo "<span class='wfop_not_open'>Sorry , Our Resturant is not Open on " . $day_name . '</span>';
+	}
+	?>
+	<a href="<?php echo wp_get_referer(); ?>"><button type="button">Go Back</button></a>
 </div>
