@@ -60,3 +60,4 @@
   #week_btn{background-color: darkseagreen;float: left;}
   .wfop_single_time_p{float: right;font-size: 30px;}
   #wait{color:blue;}
+  .wfop_delete{float: right;width: 100%; color: red;}

@@ -1,6 +1,32 @@
 jQuery( document ).ready(
 	function ($) {
 
+		url = wfop_ajax.ajaxurl;
+		
+
+		$( document ).on(
+			"click",
+			".wfop_delete",
+			function(event){
+				var order_id          = $( this ).attr( 'data-id' );
+
+				var done = confirm('Are you sure you want to delete order#'+ order_id +' ?');
+				if(done == true){
+					jQuery.ajax(
+						{
+							url: url,
+							type: "post",
+							data: {action: "wfop_delete_order", order_id: order_id,},
+							success: function (response) {
+								location.reload();
+							}
+						}
+					);
+				}
+
+			}
+		);
+
 		$( '#wc_food_ordering_plugin_add_slots_to_cat' ).select2(
 			{
 				closeOnSelect: false,

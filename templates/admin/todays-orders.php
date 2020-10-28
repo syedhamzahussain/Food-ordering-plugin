@@ -55,11 +55,11 @@ if ( $all_valid_order ) {
 			}
 
 			?>
+		<p style="float: right;"><b><button type="button" class='wfop_delete' data-id='<?php echo $result_array['order']; ?>'>X</button></p></b>
 		<div class="single_order_row">
 			<b>
 			<?php
 			foreach ( $result_array as $key => $value ) {
-
 				if ( $key == 'product' ) {
 					?>
 
