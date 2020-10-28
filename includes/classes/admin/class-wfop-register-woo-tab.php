@@ -31,6 +31,18 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 				'180' => '3hrs',
 			);
 
+			$this->days = array(
+				'monday'  => 'Monday',
+				'tuesday'  => 'Tuesday',
+				'wednesday'  => 'Wednesday',
+				'thursday'  => 'Thursday',
+				'friday' => 'Friday',
+				'satuarday' => 'Satuarday',
+				'sunday' => 'Sunday',
+			);
+
+
+
 			add_action( 'init', array( $this, 'init' ) );
 
 			add_action( 'woocommerce_admin_field_show_all_added_slots', array( $this, 'show_all_added_slots' ) );
@@ -47,6 +59,23 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 		public function init() {
 
 			add_action( 'woocommerce_product_options_inventory_product_data', array( $this, 'product_level_pieces' ) );
+
+			// adding default data
+			$days = array(
+				'monday',
+				'tuesday',
+				'wednesday',
+				'thursday',
+				'friday',
+				'satuarday',
+				'sunday',
+			);
+			
+			if( empty( get_option('wc_food_ordering_plugin_open_days',true) ) ){
+				update_option( 'wc_food_ordering_plugin_open_days', $days);
+			}
+			
+			// 
 		}
 
 		public function product_level_pieces() {
@@ -193,10 +222,13 @@ if ( ! class_exists( 'WFOP_REGISTER_WOO_TAB' ) ) {
 					'title'   => __( 'Affected Products', 'wc_food_ordering_plugin' ),
 					'type'    => 'multiselect',
 					'options' => $product_categories,
-					// 'custom_attributes' => array(
-					// 'multiple' => 'true',
-					// ),
 					'id'      => $this->id . '_add_slots_to_cat',
+				),
+				'open_days' => array(
+					'title'   => __( 'Open Days', 'wc_food_ordering_plugin' ),
+					'type'    => 'multiselect',
+					'options' => $this->days,
+					'id'      => $this->id . '_open_days',
 				),
 				'section_2_end'    => array(
 					'type' => 'sectionend',

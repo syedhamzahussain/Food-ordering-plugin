@@ -11,6 +11,16 @@ jQuery( document ).ready(
 			}
 		);
 
+		$( '#wc_food_ordering_plugin_open_days' ).select2(
+			{
+				closeOnSelect: false,
+				placeholder: "Select Open Days",
+				allowHtml: true,
+				allowClear: true,
+				tags: false
+			}
+		);
+
 		$( '.single_order_row' ).each(
 			function() {
 				if ( ! $.trim( $( this ).html() ).length ) {
