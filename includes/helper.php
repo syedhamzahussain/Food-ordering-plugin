@@ -157,11 +157,11 @@ function get_no_pieces_by_product( $product_id, $slot ) {
 }
 
 
-function wfop_get_sorted_results( $all_valid_order ,$total_slots ){
+function wfop_get_sorted_results( $all_valid_order, $total_slots ) {
 
 	$all_products = array();
 	foreach ( $total_slots as $key => $time ) {
-		$all_products[$time] = array();
+		$all_products[ $time ] = array();
 
 		foreach ( $all_valid_order as $result_array ) {
 
@@ -169,24 +169,33 @@ function wfop_get_sorted_results( $all_valid_order ,$total_slots ){
 				continue;
 			}
 
-				if( !array_key_exists( $result_array['product'] ,$all_products[$time]) ){
+			if ( ! array_key_exists( $result_array['product'], $all_products[ $time ] ) ) {
 
-					 $myarray = array('slot' => $time,'quantity' => $result_array['quantity'],'name' => $result_array['name'],'order' => $result_array['order'],'image_url' => $result_array['image_url']);
-					 $all_products[$time][$result_array['product']] = array();
-					 if(!empty($myarray)){
-						array_push($all_products[$time][$result_array['product']],$myarray);
-					}
+				 $myarray = array(
+					 'slot'      => $time,
+					 'quantity'  => $result_array['quantity'],
+					 'name'      => $result_array['name'],
+					 'order'     => $result_array['order'],
+					 'image_url' => $result_array['image_url'],
+				 );
+				 $all_products[ $time ][ $result_array['product'] ] = array();
+				 if ( ! empty( $myarray ) ) {
+					   array_push( $all_products[ $time ][ $result_array['product'] ], $myarray );
+				 }
+			} else {
+				$myarray = array(
+					'slot'      => $time,
+					'quantity'  => $result_array['quantity'],
+					'name'      => $result_array['name'],
+					'order'     => $result_array['order'],
+					'image_url' => $result_array['image_url'],
+				);
+
+				if ( ! empty( $myarray ) ) {
+					array_push( $all_products[ $time ][ $result_array['product'] ], $myarray );
 				}
-				else{
-					$myarray = array('slot' => $time,'quantity' => $result_array['quantity'],'name' => $result_array['name'],'order' => $result_array['order'],'image_url' => $result_array['image_url']);
-
-					if(!empty($myarray)){
-						array_push($all_products[$time][$result_array['product']],$myarray);
-					}
-				}
-
 			}
-
+		}
 	}
 
 	return $all_products;

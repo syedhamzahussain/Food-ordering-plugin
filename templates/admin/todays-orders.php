@@ -42,25 +42,28 @@ if ( $all_valid_order ) {
 	$total_slots = get_option( 'wfop_total_slots', true );
 	asort( $all_valid_order );
 
-	$sorted_orders_array = wfop_get_sorted_results($all_valid_order,$total_slots);
-	echo "<pre>";
-	print_r($sorted_orders_array);
-	echo "</pre>";
-	foreach ( $total_slots as $key => $time ) { ?>
+	$sorted_orders_array = wfop_get_sorted_results( $all_valid_order, $total_slots );
+	echo '<pre>';
+	print_r( $sorted_orders_array );
+	echo '</pre>';
+	foreach ( $total_slots as $key => $time ) {
+		?>
 	<br>
 	<div class="slot_row_back">
 		<span class="wfop_back_slot"><?php echo $time; ?></span>
-	<?php
+		<?php
 
-	foreach ( $sorted_orders_array[$time] as $result_array ) { ?>
+		foreach ( $sorted_orders_array[ $time ] as $result_array ) {
+			?>
 		<div class="single_order_row">
 			<p style="float: right;"><b><button type="button" class='wfop_delete' data-id='<?php echo $result_array['order']; ?>'>X</button></b></p>
 			<br>
 			<b>
 		</div>
-	<?php } ?>
+		<?php } ?>
 	</div>
-	<?php }
+		<?php
+	}
 }
 
 ?>
