@@ -42,78 +42,27 @@ if ( $all_valid_order ) {
 	$total_slots = get_option( 'wfop_total_slots', true );
 	asort( $all_valid_order );
 
-	$output = wfop_get_sorted_results($all_valid_order,$total_slots);
+	$sorted_orders_array = wfop_get_sorted_results($all_valid_order,$total_slots);
 	echo "<pre>";
-	print_r($output);
+	print_r($sorted_orders_array);
 	echo "</pre>";
-	foreach ( $total_slots as $key => $time ) {
-		$all_products = array();
-		?>
+	foreach ( $total_slots as $key => $time ) { ?>
 	<br>
 	<div class="slot_row_back">
-		
-	<span class="wfop_back_slot"><?php echo $time; ?></span>
-		<?php
+		<span class="wfop_back_slot"><?php echo $time; ?></span>
+	<?php
 
-		foreach ( $all_valid_order as $result_array ) {
-
-			if ( $result_array['slot'] != $time ) {
-				continue;
-			}
-
-				if( !array_key_exists( $result_array['product'] ,$all_products) ){
-
-					 $myarray = array('slot' => $time,'quantity' => $result_array['quantity'],'name' => $result_array['name'],'order' => $result_array['order']);
-					 $all_products[$result_array['product']][$time] = array();
-					array_push($all_products[$result_array['product']][$time],$myarray);
-				}
-				else{
-					$myarray = array('slot' => $time,'quantity' => $result_array['quantity'],'name' => $result_array['name'],'order' => $result_array['order']);
-					array_push($all_products[$result_array['product']][$time],$myarray);
-				}
-
-
-			?>
+	foreach ( $sorted_orders_array[$time] as $result_array ) { ?>
 		<div class="single_order_row">
 			<p style="float: right;"><b><button type="button" class='wfop_delete' data-id='<?php echo $result_array['order']; ?>'>X</button></b></p>
 			<br>
 			<b>
-			<?php
-			foreach ( $result_array as $key => $value ) {
-				if ( $key == 'product' ) {
-					?>
-
-			<p><span class="wfop_back_name"><?php echo $value; ?></span>
-					<?php
-				} elseif ( $key == 'quantity' ) {
-					?>
-			<span class="wfop_back_quantity"><?php echo $value; ?></span></p>
-					<?php
-				} elseif ( $key == 'name' ) {
-					?>
-				<p><span class="wfop_back_customer"><?php echo $value; ?></span>
-					<?php
-				} elseif ( $key == 'image_url' ) {
-					?>
-			<span class="wfop_back_image"><img src="<?php echo $value; ?>"></span></p>
-					<?php
-				} elseif ( $key == 'order' ) {
-					?>
-				<span class="wfop_back_order">Order# <?php echo $value; ?></span>
-					<?php
-				}
-			}
-			?>
-		</b>
+		</div>
+	<?php } ?>
 	</div>
-			<?php
-		}
-		?>
-	</div>
-	<br>
-		<?php
-	}
-
+	<?php }
 }
 
 ?>
+</div>
+

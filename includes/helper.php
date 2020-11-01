@@ -173,11 +173,16 @@ function wfop_get_sorted_results( $all_valid_order ,$total_slots ){
 
 					 $myarray = array('slot' => $time,'quantity' => $result_array['quantity'],'name' => $result_array['name'],'order' => $result_array['order'],'image_url' => $result_array['image_url']);
 					 $all_products[$time][$result_array['product']] = array();
-					array_push($all_products[$time][$result_array['product']],$myarray);
+					 if(!empty($myarray)){
+						array_push($all_products[$time][$result_array['product']],$myarray);
+					}
 				}
 				else{
 					$myarray = array('slot' => $time,'quantity' => $result_array['quantity'],'name' => $result_array['name'],'order' => $result_array['order'],'image_url' => $result_array['image_url']);
-					array_push($all_products[$time][$result_array['product']],$myarray);
+
+					if(!empty($myarray)){
+						array_push($all_products[$time][$result_array['product']],$myarray);
+					}
 				}
 
 			}
