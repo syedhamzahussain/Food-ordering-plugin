@@ -38,9 +38,12 @@ foreach ( $orders as $key => $value ) {
 <?php
 if ( $all_valid_order ) {
 
+	
+
 	$total_slots = get_option( 'wfop_total_slots', true );
 	asort( $all_valid_order );
 	foreach ( $total_slots as $key => $time ) {
+		$all_products = array();
 		?>
 	<br>
 	<div class="slot_row_back">
@@ -53,6 +56,18 @@ if ( $all_valid_order ) {
 			if ( $result_array['slot'] != $time ) {
 				continue;
 			}
+
+				if( !array_key_exists( $result_array['product'] ,$all_products) ){
+
+					 $myarray = array('slot' => $time,'quantity' => $result_array['quantity'],'name' => $result_array['name'],'order' => $result_array['order']);
+					 $all_products[$result_array['product']][$time] = array();
+					array_push($all_products[$result_array['product']][$time],$myarray);
+				}
+				else{
+					$myarray = array('slot' => $time,'quantity' => $result_array['quantity'],'name' => $result_array['name'],'order' => $result_array['order']);
+					array_push($all_products[$result_array['product']][$time],$myarray);
+				}
+
 
 			?>
 		<div class="single_order_row">
@@ -94,6 +109,7 @@ if ( $all_valid_order ) {
 	<br>
 		<?php
 	}
+
 }
 
 ?>
