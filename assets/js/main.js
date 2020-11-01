@@ -75,10 +75,9 @@ jQuery( document ).ready(
 					not_open = true;
 				}
 
-				if( typeof $( this ).attr('disabled') == 'undefined'){
+				if ( typeof $( this ).attr( 'disabled' ) == 'undefined') {
 					return;
-				}
-				else{
+				} else {
 					$( ".wfop_not_open" ).remove();
 					$( "#wfop_shop_wrapper" ).append( '<span id="wait"><h3>Please wait .....</h3></span>' );
 				}
@@ -92,7 +91,7 @@ jQuery( document ).ready(
 							if (not_open == true) {
 								$( '#wait' ).remove();
 								$( "#wfop_shop_wrapper" ).append( response );
-								$(".wfop_date").click();
+								$( ".wfop_date" ).click();
 							} else {
 								obj = JSON.parse( response );
 

@@ -96,7 +96,3 @@ if ( $all_valid_order ) {
 }
 
 ?>
-
-
-
-

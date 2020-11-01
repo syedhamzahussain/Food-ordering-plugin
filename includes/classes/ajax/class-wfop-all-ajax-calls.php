@@ -48,8 +48,8 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 			}
 
 			$seven_days = get_dates_for_calendar_ajax( $want, date( 'Y-' ) . $date );
-			$open_days = get_option( 'wc_food_ordering_plugin_open_days', true );
-			
+			$open_days  = get_option( 'wc_food_ordering_plugin_open_days', true );
+
 			echo $html = "<span class='previous_week'><button data-want='previous' type='button' id='week_btn'>Previous 7 Days</button></span>";
 			foreach ( $seven_days as $key => $day ) {
 				if ( reset( $seven_days ) == $day ) {
