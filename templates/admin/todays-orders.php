@@ -38,10 +38,14 @@ foreach ( $orders as $key => $value ) {
 <?php
 if ( $all_valid_order ) {
 
-	
 
 	$total_slots = get_option( 'wfop_total_slots', true );
 	asort( $all_valid_order );
+
+	$output = wfop_get_sorted_results($all_valid_order,$total_slots);
+	echo "<pre>";
+	print_r($output);
+	echo "</pre>";
 	foreach ( $total_slots as $key => $time ) {
 		$all_products = array();
 		?>
