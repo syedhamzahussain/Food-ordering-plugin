@@ -1,6 +1,8 @@
 jQuery( document ).ready(
 	function ($) {
 
+		$(".wfop_row").show();
+
 		url = wfop_ajax.ajaxurl;
 
 		$( document ).on(
