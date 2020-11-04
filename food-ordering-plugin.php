@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Food Ordering Plugin
  * Description: Plugin for Woocommerce that will to book a food product at a specific time of the day.
- * Version:     1.1.1.5
+ * Version:     1.1.1.6
  * Author:      Syed Hamza Hussain
  * Author URI:  https://www.upwork.com/fl/syedhamzahussain
  * License:     GPL2
