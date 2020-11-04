@@ -34,11 +34,10 @@
 
 #todays_orders_backend{background-color:white;width: 100%;height: 100%;float: left;min-height: 750px; }
 .slot_row_back{    width: 100%;float: left;height: 100%;min-height: 100px;}
-.single_order_row{    width:35%;float:left;border: #ad71c6;
+.single_order_row{    width:30%;float:left;border: #ad71c6;
 	border-style: solid;margin: 10px;border-radius: 8px;border-width: 1.5px;}
 .wfop_back_name{float: left;width: 50%;font-size: 20px;}
 .wfop_back_quantity{
-  float: right;
   height: 25px;
   width: 25px;
   background-color: #bbb;
@@ -49,7 +48,7 @@
 .wfop_back_image{width: 50%;float: left;}
 .wfop_back_image img{width: 100px;height: 100px;}
 .wfop_back_slot{font-size: 40px;color: #56b9be;float: left;width: 100%;}
-.wfop_back_order{float: right;text-align: right;width: 50%;color: green;}
+.wfop_back_order{float: right;text-align: right;color: green;}
 .pieces{height: 25px;
   width: 25px;
   background-color: #bbb;
@@ -60,4 +59,8 @@
   #week_btn{background-color: darkseagreen;float: left;}
   .wfop_single_time_p{float: right;font-size: 30px;}
   #wait{color:blue;}
-  .wfop_delete{float: right;width: 100%; color: red;}
+  .wfop_delete{ color: red;}
+  .p_title_today_order{float: left;width: 100%;}
+  .left_column_today_order{float: left;width: 35%;height: 100%;}
+  .right_column_today_order{float: left;width: 65%;height: 100%;}
+  .wfop_cus_name{    background-color: #f1ebeb;}

@@ -173,6 +173,7 @@ function wfop_get_sorted_results( $all_valid_order, $total_slots ) {
 
 				 $myarray = array(
 					 'slot'      => $time,
+					 'product'   => $result_array['product'],
 					 'quantity'  => $result_array['quantity'],
 					 'name'      => $result_array['name'],
 					 'order'     => $result_array['order'],
@@ -185,6 +186,7 @@ function wfop_get_sorted_results( $all_valid_order, $total_slots ) {
 			} else {
 				$myarray = array(
 					'slot'      => $time,
+					'product'   => $result_array['product'],
 					'quantity'  => $result_array['quantity'],
 					'name'      => $result_array['name'],
 					'order'     => $result_array['order'],

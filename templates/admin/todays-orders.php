@@ -43,9 +43,7 @@ if ( $all_valid_order ) {
 	asort( $all_valid_order );
 
 	$sorted_orders_array = wfop_get_sorted_results( $all_valid_order, $total_slots );
-	echo '<pre>';
-	print_r( $sorted_orders_array );
-	echo '</pre>';
+
 	foreach ( $total_slots as $key => $time ) {
 		?>
 	<br>
@@ -56,7 +54,22 @@ if ( $all_valid_order ) {
 		foreach ( $sorted_orders_array[ $time ] as $result_array ) {
 			?>
 		<div class="single_order_row">
-			<p style="float: right;"><b><button type="button" class='wfop_delete' data-id='<?php echo $result_array['order']; ?>'>X</button></b></p>
+			<h3 class="p_title_today_order"><?php echo $result_array[0]['product']; ?></h3>
+			<div class="left_column_today_order">
+				<span class="wfop_back_image"><img src="<?php echo $result_array[0]['image_url']; ?>"></span>
+			</div>
+			<div class="right_column_today_order">
+				<?php foreach ( $result_array as $ind_order ) { 
+
+					echo "<p>
+					<span class='wfop_cus_name'><b>".$ind_order['name']."</b></span>
+					<span class='wfop_back_quantity'>".$ind_order['quantity']."</span>
+					<span class='wfop_back_order'>Order# ".$ind_order['order']."</span>
+					<button type='button' class='wfop_delete' data-id='".$ind_order['order']."'>X</button>
+					</p>";
+				}
+				?>
+			</div>
 			<br>
 			<b>
 		</div>
