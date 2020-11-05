@@ -82,9 +82,9 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 				$date = date( 'Y-m-d' );
 			}
 
-			$open = sanitize_text_field( wp_unslash( $_POST['not_open'] ) );
+			//$open = sanitize_text_field( wp_unslash( $_POST['not_open'] ) );
 
-			if ( $open == true ) {
+			if ( $_POST['not_open'] == 'true' ) {
 
 				$open_days    = get_option( 'wc_food_ordering_plugin_open_days', true );
 				$seven_days   = get_dates_for_calendar();
