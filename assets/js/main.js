@@ -93,7 +93,7 @@ jQuery( document ).ready(
 							if (not_open == true) {
 								$( '#wait' ).remove();
 								$( "#wfop_shop_wrapper" ).append( response );
-								$( ".wfop_date" ).click();
+							
 							} 
 							else {
 								obj = JSON.parse( response );
