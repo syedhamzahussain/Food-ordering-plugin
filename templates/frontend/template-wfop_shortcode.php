@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$d        = date( 'Y-' ) . $day;
 			$day_name = date( 'D', strtotime( $d ) );
 
-			if ( ! in_array( ( date( 'l', strtotime( $d ) ) ), $open_days ) ) {
+			if ( ! in_array( ( date( 'l', strtotime( $d ) ) ), $open_days ) || (strtotime($d) < strtotime( current_time('Y-m-d') ) ) ) {
 				echo "<button disabled='disabled' type='button'>" . $day_name . '<br>' . $day . '</button>';
 			} else {
 				echo "<button type='button'>" . $day_name . '<br>' . $day . '</button>';
