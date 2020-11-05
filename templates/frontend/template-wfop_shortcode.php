@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<span class='previous_week'><button disabled data-want='previous' type='button' id='week_btn'>Previous 7 Days</button></span>
 		<?php
 		foreach ( $seven_days as $key => $day ) {
-			if ( $key == 1 ) {
+			if ( $day == current_time('m-d') ) {
 				$today = $day;
 				echo "<span class='wfop_date active' style='padding-left:8px;' data-date='" . $day . "'>";
 			} else {
