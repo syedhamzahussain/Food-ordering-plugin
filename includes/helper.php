@@ -98,7 +98,7 @@ function get_no_pieces_by_product( $product_id, $slot ) {
 		$date = date( 'Y' ) . '-' . trim( sanitize_text_field( wp_unslash( $_REQUEST['date'] ) ) );
 
 	} else {
-		$date = date( 'Y-m-d' );
+		$date = current_time( 'Y-m-d' );
 	}
 
 				$new_array = array();
