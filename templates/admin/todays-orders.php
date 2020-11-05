@@ -11,7 +11,7 @@ foreach ( $orders as $key => $value ) {
 		$date = $item->get_meta( 'date', true );
 		$time = $item->get_meta( 'time', true );
 
-		if ( ( ! empty( $date ) && ! empty( $time ) ) && $date == current_time('Y-m-d') ) {
+		if ( ( ! empty( $date ) && ! empty( $time ) ) && $date == current_time( 'Y-m-d' ) ) {
 
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $item->get_product_id() ), 'single-post-thumbnail' );
 
@@ -59,13 +59,14 @@ if ( $all_valid_order ) {
 				<span class="wfop_back_image"><img src="<?php echo $result_array[0]['image_url']; ?>"></span>
 			</div>
 			<div class="right_column_today_order">
-				<?php foreach ( $result_array as $ind_order ) { 
+				<?php
+				foreach ( $result_array as $ind_order ) {
 
 					echo "<p>
-					<span class='wfop_cus_name'><b>".$ind_order['name']."</b></span>
-					<span class='wfop_back_quantity'>".$ind_order['quantity']."</span>
-					<span class='wfop_back_order'>Order# ".$ind_order['order']."</span>
-					<button type='button' class='wfop_delete' data-id='".$ind_order['order']."'>X</button>
+					<span class='wfop_cus_name'><b>" . $ind_order['name'] . "</b></span>
+					<span class='wfop_back_quantity'>" . $ind_order['quantity'] . "</span>
+					<span class='wfop_back_order'>Order# " . $ind_order['order'] . "</span>
+					<button type='button' class='wfop_delete' data-id='" . $ind_order['order'] . "'>X</button>
 					</p>";
 				}
 				?>
