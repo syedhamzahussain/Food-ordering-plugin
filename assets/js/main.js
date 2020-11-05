@@ -71,18 +71,18 @@ jQuery( document ).ready(
 			function(event){
 				$( '.wfop_date' ).removeClass( 'active' );
 				$( this ).addClass( 'active' );
-				var date = $( this ).text();
+				var date = $( this ).text().substring(3, 8);
+
+				
 				not_open = false;
 				if ( $( ".wfop_not_open" )[0] ) {
 					not_open = true;
-				}
-
-				if ( typeof $( this ).attr( 'disabled' ) == 'undefined') {
-					return;
-				} else {
 					$( ".wfop_not_open" ).remove();
 					$( "#wfop_shop_wrapper" ).append( '<span id="wait"><h3>Please wait .....</h3></span>' );
 				}
+
+					
+
 
 				jQuery.ajax(
 					{
@@ -94,7 +94,8 @@ jQuery( document ).ready(
 								$( '#wait' ).remove();
 								$( "#wfop_shop_wrapper" ).append( response );
 								$( ".wfop_date" ).click();
-							} else {
+							} 
+							else {
 								obj = JSON.parse( response );
 
 								$( obj ).each(
@@ -126,11 +127,14 @@ jQuery( document ).ready(
 
 				$( '#wfop_calendar' ).empty();
 
+				var new_date = date.substring(3, 8);
+
+
 				jQuery.ajax(
 					{
 						url: url,
 						type: "post",
-						data: {action: "change_calendar",want:want,date:date},
+						data: {action: "change_calendar",want:want,date:new_date},
 						success: function (response) {
 							$( '#wfop_calendar' ).html( response );
 							$( '.wfop_date.active' ).click();

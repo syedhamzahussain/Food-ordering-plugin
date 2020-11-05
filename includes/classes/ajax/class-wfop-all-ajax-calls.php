@@ -74,15 +74,17 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 
 		public function get_pieces_by_date() {
 
-			if ( isset( $_REQUEST['date'] ) ) {
+			if ( isset( $_POST['date'] ) ) {
 
-				$date = date( 'Y' ) . '-' . trim( sanitize_text_field( wp_unslash( $_REQUEST['date'] ) ) );
+				$date = date( 'Y' ) . '-' . trim( sanitize_text_field( wp_unslash( $_POST['date'] ) ) );
 
 			} else {
 				$date = date( 'Y-m-d' );
 			}
 
-			if ( $_REQUEST['not_open'] == true ) {
+			$open = sanitize_text_field( wp_unslash( $_POST['not_open'] ) );
+
+			if ( $open === true ) {
 				$open_days    = get_option( 'wc_food_ordering_plugin_open_days', true );
 				$seven_days   = get_dates_for_calendar();
 				$intervals    = get_option( 'wc_food_ordering_plugin_time_interval', true );
@@ -100,6 +102,7 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 
 				wp_die( $html );
 			}
+			else{
 
 				$new_array = array();
 				$details   = get_products_details();
@@ -151,6 +154,7 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 			} else {
 				wp_die( wp_json_encode( $details ) );
 			}
+		}
 
 		}
 
