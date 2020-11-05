@@ -11,7 +11,7 @@ foreach ( $orders as $key => $value ) {
 		$date = $item->get_meta( 'date', true );
 		$time = $item->get_meta( 'time', true );
 
-		if ( ( ! empty( $date ) && ! empty( $time ) ) && $date == date( 'Y-m-d' ) ) {
+		if ( ( ! empty( $date ) && ! empty( $time ) ) && $date == current_time('Y-m-d') ) {
 
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $item->get_product_id() ), 'single-post-thumbnail' );
 

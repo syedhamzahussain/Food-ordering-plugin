@@ -18,9 +18,8 @@ function total_slots( $StartTime, $EndTime, $Duration = '60' ) {
 
 function get_dates_for_calendar() {
 
-			$dates[0] = date( 'm-d' );
 	for ( $i = 1; $i <= 7; $i++ ) {
-		$dates[ $i ] = date( 'm-d', strtotime( '+' . $i . ' days' ) );
+		$dates[ $i ] = date( 'm-d', strtotime( strtotime( current_time('m-d') ).'+' . $i . ' days' ) );
 	}
 
 			return $dates;

@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $product_id = $_GET['product_id'];
 $time       = $_GET['time'];
-$date       = date( 'Y-m-d' );
+$date       = current_time('Y-m-d');
 
 if ( isset( $_GET['date'] ) ) {
 	$date = date( 'Y-' ) . $_GET['date'];
