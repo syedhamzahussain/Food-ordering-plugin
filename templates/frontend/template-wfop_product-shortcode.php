@@ -40,7 +40,7 @@ $checkout_url = $woocommerce->cart->get_checkout_url();
 		?>
 	<div>
 		<?php if ( $pieces > 0 ) { ?>
-		<input type="number" min="1" max="<?php echo $pieces_global; ?>" value="1" name="wfop_qty" id="wfop_qty"><span><?php echo __( $pieces . ' Available' ); ?></span><span class="wfop_single_price_p"><b><?php echo wc_price( $product->get_price() ); ?></b></span>
+		<input type="number" min="1" max="<?php echo $pieces; ?>" placeholder="1" name="wfop_qty" id="wfop_qty"><span><?php echo __( $pieces . ' Available' ); ?></span><span class="wfop_single_price_p"><b><?php echo wc_price( $product->get_price() ); ?></b></span>
 		<?php } ?>
 	</div>
 	<br>
