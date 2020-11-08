@@ -98,7 +98,12 @@ if ( ! class_exists( 'WFOP_ALL_AJAX_CALLS' ) ) {
 
 				foreach ( $total_slots as $key => $s_time ) {
 
-					$html = + require WFOP_TEMP_DIR . '/frontend/template-wfop_indiv_pro_row.php';
+					$c_time = date('H:i',strtotime($s_time));
+					if(  $c_time >= current_time('H:i')   ){
+
+						$html = + require WFOP_TEMP_DIR . '/frontend/template-wfop_indiv_pro_row.php';
+
+					}
 				}
 
 				wp_die( $html );

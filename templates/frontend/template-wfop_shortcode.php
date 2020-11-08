@@ -34,9 +34,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( ! in_array( ( date( 'l', strtotime( current_time( 'Y-m-d' ) ) ) ), $open_days ) ) {
 			echo "<p style='float:left;'><span class='wfop_not_open'>We're sorry, we are not open this day</span></p>";
 		} else {
-			foreach ( $total_slots as $key => $s_time ) {
 
-				require WFOP_TEMP_DIR . '/frontend/template-wfop_indiv_pro_row.php';
+			foreach ( $total_slots as $key => $s_time ) {
+				$c_time = date('H:i',strtotime($s_time));
+				if(  $c_time >= current_time('H:i')   ){
+					require WFOP_TEMP_DIR . '/frontend/template-wfop_indiv_pro_row.php';
+				}
 			}
 		}
 		?>
