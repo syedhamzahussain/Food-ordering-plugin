@@ -34,7 +34,7 @@ function get_dates_for_calendar_ajax( $want, $date ) {
 		}
 	} elseif ( $want == 'previous' ) {
 
-		for ( $i = 8; $i >= 1; $i-- ) {
+		for ( $i = 7; $i >= 1; $i-- ) {
 			 $dates[ $i ] = date( 'm-d', strtotime( '-' . $i . ' days', strtotime( $date ) ) );
 		}
 	}
