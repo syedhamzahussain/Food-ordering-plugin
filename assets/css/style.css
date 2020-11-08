@@ -5,7 +5,7 @@
 #wfop_shop_wrapper{width: 100%;}
 
 #wfop_calendar{width: 100%;}
-.wfop_date{padding-right: 3px; width: 9%;float: left;}
+.wfop_date{padding-right: 3px; width: 10.5%;float: left;}
 
 .wfop_indi_product_div{width: 200px;}
 
@@ -64,3 +64,4 @@
   .left_column_today_order{float: left;width: 35%;height: 100%;}
   .right_column_today_order{float: left;width: 65%;height: 100%;}
   .wfop_cus_name{    background-color: #f1ebeb;}
+  .wfop_date{margin-left: 10px;}

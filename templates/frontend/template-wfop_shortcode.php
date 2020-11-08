@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div id="wfop_shop_wrapper">
 	<div id="wfop_calendar">
-		<span class='previous_week'><button disabled data-want='previous' type='button' id='week_btn'>Previous 7 Days</button></span>
+		<span class='previous_week'><button disabled data-want='previous' type='button' id='week_btn'> < </button></span>
 		<?php
 		foreach ( $seven_days as $key => $day ) {
 			if ( $day == current_time( 'm-d' ) ) {
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				
 			</span>
 		<?php } ?>
-		<span class="next_week"><button data-want='next' type="button" id="week_btn">Next 7 Days</button></span>
+		<span class="next_week"><button data-want='next' type="button" id="week_btn"> > </button></span>
 	</div>
 		<?php
 		if ( ! in_array( ( date( 'l', strtotime( current_time( 'Y-m-d' ) ) ) ), $open_days ) ) {
