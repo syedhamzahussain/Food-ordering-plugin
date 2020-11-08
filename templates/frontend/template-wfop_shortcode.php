@@ -36,8 +36,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		} else {
 
 			foreach ( $total_slots as $key => $s_time ) {
-				$c_time = date('H:i',strtotime($s_time));
-				if(  $c_time >= current_time('H:i')   ){
+				$c_time = date( 'H:i', strtotime( $s_time ) );
+				if ( $c_time >= current_time( 'H:i' ) ) {
 					require WFOP_TEMP_DIR . '/frontend/template-wfop_indiv_pro_row.php';
 				}
 			}
